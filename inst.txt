@@ -1,0 +1,9 @@
+nodemon.json -> configuração do sucrase funcionar no node
+configuração do eslint -> yarn eslint --init
+yarn add sequelize-cli -> permite usar comandos no terminal
+informações das migrations = {
+  yarn sequelize migration:create --name=name-migration  -> cria migration
+  yarn sequelize db:migrate -> cria a tabela
+  yarn sequelize db:migrate:undo -> desfaz a última migration
+  yarn sequelize db:migrate:undo:all -> desfaz todas migrations
+}
