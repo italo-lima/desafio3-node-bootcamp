@@ -24,7 +24,8 @@ routes.get("/checkin/:id", CheckinController.index)
 routes.post("/checkin/:id", CheckinController.store)
 
 //rotas públicas de help-orders
-//routes.get("/help-orders/:id", CheckinController.index)
+routes.get("/help-orders/", HelpOrders.show)
+routes.get("/help-orders/:id", HelpOrders.index)
 routes.post("/help-orders/:id", HelpOrders.store)
 
 routes.use(AuthMiddleware)
