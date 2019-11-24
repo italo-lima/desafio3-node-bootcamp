@@ -3,6 +3,7 @@ import UserController from "./app/controllers/UserController"
 import PlanController from "./app/controllers/PlanController"
 import RegistrationController from "./app/controllers/RegistrationController"
 import CheckinController from "./app/controllers/CheckinController"
+import HelpOrders from "./app/controllers/HelpOrdersController"
 
 import SessionController from "./app/controllers/SessionController"
 
@@ -19,9 +20,12 @@ routes.get("/users/:id", UserController.index)
 routes.post("/users", UserController.store)
 
 //rotas públicas de checkin
-//routes.get("/checkin", CheckinController.show)
 routes.get("/checkin/:id", CheckinController.index)
 routes.post("/checkin/:id", CheckinController.store)
+
+//rotas públicas de help-orders
+//routes.get("/help-orders/:id", CheckinController.index)
+routes.post("/help-orders/:id", HelpOrders.store)
 
 routes.use(AuthMiddleware)
 

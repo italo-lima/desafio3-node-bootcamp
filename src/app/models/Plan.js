@@ -13,6 +13,7 @@ class Plan extends Model {
                 sequelize  //conexão que vem de database/index
             }
         )
+        return this
 
         }
     }

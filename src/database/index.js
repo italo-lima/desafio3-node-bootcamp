@@ -7,9 +7,10 @@ import User from "../app/models/User"
 import Plan from "../app/models/Plan"
 import Registration from "../app/models/Registration"
 import Checkin from "../app/models/Checkin"
+import HelpOrders from "../app/models/HelpOrders"
 
 //Array de models para ser carregado
-const models = [User, Plan, Registration, Checkin]
+const models = [User, Plan, Registration, Checkin, HelpOrders]
 
 //conexão com o banco e carregar os models 
 class DataBase{
