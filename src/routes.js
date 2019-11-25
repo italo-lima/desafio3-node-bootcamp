@@ -27,6 +27,7 @@ routes.post("/checkin/:id", CheckinController.store)
 routes.get("/help-orders/", HelpOrders.show)
 routes.get("/help-orders/:id", HelpOrders.index)
 routes.post("/help-orders/:id", HelpOrders.store)
+routes.put("/help-orders/:id/answer", HelpOrders.update)
 
 routes.use(AuthMiddleware)
 

@@ -1,6 +1,7 @@
 import User from "../models/User"
 import HelpOrders from "../models/HelpOrders"
 import * as Yup from "yup"
+import Mail from "../../lib/Mail"
 
 class HelpOrdersController{
     async store(req, res){
@@ -34,7 +35,44 @@ class HelpOrdersController{
         const orders = await HelpOrders.findAll({where: {id}})
 
         return res.json(orders)
+    }
 
+    async update(req, res){
+        /*const schema = Yup.object().shape({
+            answer: Yup.string().required()
+        })
+
+        if(!(await schema.isValid(req.body))){
+            return res.status(401).json({error: "Validations Fail"})
+        } */
+
+        const {id} = req.params
+        const question = await HelpOrders.findOne({
+            where:{id, answer:null},
+            attributes:['id','student_id','question','answer','answer_at','created_at','updated_at']
+        })
+        
+        if(!question){
+            return res.status(401).json({error: "question not found"})
+        }
+
+        const student = await User.findOne({where:{id: question.student_id}})
+        
+        const {answer} = req.body
+        const newQuestion = await question.update(req.body)
+
+        await Mail.sendMail({
+            to: `${student.name} <${student.email}>`,
+            subject: "Resposta ao pedido de Auxílio na Gympoint",
+            template: "answer", //template hbs
+            context: {
+                student: student.name,
+                question: question.question,
+                answer
+            }
+        }) 
+
+        return res.json(newQuestion)
     }
 
     async show(req, res){
